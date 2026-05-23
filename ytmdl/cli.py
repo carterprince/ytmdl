@@ -24,12 +24,11 @@ atexit.register(restore_terminal)
 
 def playlist_entries(url):
     r = subprocess.run(
-        ["yt-dlp", "--flat-playlist", "-J", url],
+        ["yt-dlp", "--yes-playlist", "--flat-playlist", "-J", url],
         capture_output=True, text=True, check=True,
     )
     data = json.loads(r.stdout)
 
-    # single video (no "entries" key)
     if "entries" not in data:
         return [
             {
