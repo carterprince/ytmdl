@@ -27,13 +27,25 @@ def playlist_entries(url):
         ["yt-dlp", "--flat-playlist", "-J", url],
         capture_output=True, text=True, check=True,
     )
+    data = json.loads(r.stdout)
+
+    # single video (no "entries" key)
+    if "entries" not in data:
+        return [
+            {
+                "url": data.get("webpage_url", url),
+                "title": data.get("title", data["id"]),
+                "id": data["id"],
+            }
+        ]
+
     return [
         {
             "url": f"https://www.youtube.com/watch?v={e['id']}",
             "title": e.get("title", e["id"]),
             "id": e["id"],
         }
-        for e in json.loads(r.stdout)["entries"]
+        for e in data["entries"]
     ]
 
 
