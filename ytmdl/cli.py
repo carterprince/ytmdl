@@ -14,7 +14,7 @@ from rich.text import Text
 
 # Configuration
 PLAYLIST_FILE = Path("~/.local/share/playlist.txt").expanduser()
-OUTPUT_DIR = PLAYLIST_FILE.parent
+OUTPUT_DIR = Path.cwd()  # <--- Changed this to always use the current directory
 NUM_WORKERS = 8
 BAR_WIDTH = 40  # Width of the visual progress bar
 
