@@ -13,7 +13,7 @@ from rich.console import Group
 from rich.text import Text
 
 # Configuration
-PLAYLIST_FILE = Path("~/Music/playlist.txt").expanduser()
+PLAYLIST_FILE = Path("~/.local/share/playlist.txt").expanduser()
 OUTPUT_DIR = PLAYLIST_FILE.parent
 NUM_WORKERS = 8
 BAR_WIDTH = 40  # Width of the visual progress bar
